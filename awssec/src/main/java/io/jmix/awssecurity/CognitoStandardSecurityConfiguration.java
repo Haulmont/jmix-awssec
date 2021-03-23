@@ -16,8 +16,6 @@
 
 package io.jmix.awssecurity;
 
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 import io.jmix.awssecurity.user.OAuth2UserDetails;
 import io.jmix.awssecurity.user.OidcUserDetails;
 import io.jmix.security.StandardSecurityConfiguration;
@@ -34,6 +32,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -43,9 +42,6 @@ import java.util.List;
  */
 @Import(CognitoClientRegistrationConfiguration.class)
 public abstract class CognitoStandardSecurityConfiguration extends StandardSecurityConfiguration {
-
-    @Autowired
-    private CognitoProperties properties;
 
     @Autowired
     private CognitoGroupsMapper cognitoGroupsMapper;
@@ -67,7 +63,7 @@ public abstract class CognitoStandardSecurityConfiguration extends StandardSecur
     }
 
     private OAuth2UserService<OAuth2UserRequest, OAuth2User> oauth2UserService() {
-        final DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
+        DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
         return userRequest -> {
             OAuth2User user = delegate.loadUser(userRequest);
             return new OAuth2UserDetails<>(user, getUserAuthorities(user));
@@ -75,7 +71,7 @@ public abstract class CognitoStandardSecurityConfiguration extends StandardSecur
     }
 
     private OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService() {
-        final OidcUserService delegate = new OidcUserService();
+        OidcUserService delegate = new OidcUserService();
         return userRequest -> {
             OidcUser user = delegate.loadUser(userRequest);
             return new OidcUserDetails(user, getUserAuthorities(user));
@@ -85,10 +81,10 @@ public abstract class CognitoStandardSecurityConfiguration extends StandardSecur
     private Collection<? extends GrantedAuthority> getUserAuthorities(OAuth2User user) throws OAuth2AuthenticationException {
         List<String> groups = user.getAttribute("cognito:groups");
         if (groups != null && !groups.isEmpty()) {
-            return Lists.newArrayList(Iterables.concat(
-                    user.getAuthorities(),
-                    cognitoGroupsMapper.createAuthorities(groups)
-            ));
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            authorities.addAll(user.getAuthorities());
+            authorities.addAll(cognitoGroupsMapper.createAuthorities(groups));
+            return authorities;
         } else {
             return user.getAuthorities();
         }

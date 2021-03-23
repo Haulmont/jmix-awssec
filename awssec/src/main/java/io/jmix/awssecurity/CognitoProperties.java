@@ -16,15 +16,12 @@
 
 package io.jmix.awssecurity;
 
-import com.google.common.collect.ImmutableMap;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.annotation.Nullable;
-import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 

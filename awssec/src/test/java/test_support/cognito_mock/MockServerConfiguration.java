@@ -20,7 +20,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
 import org.apache.commons.io.FileUtils;
 import org.mockserver.integration.ClientAndServer;
-import org.mockserver.model.HttpResponse;
 import org.mockserver.model.Parameter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
