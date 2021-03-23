@@ -1,0 +1,12 @@
+{
+  "keys": [
+    {
+      "alg": "RS256",
+      "e": "{exponent}",
+      "kid": "test_key",
+      "kty": "RSA",
+      "n": "{modulus}",
+      "use": "sig"
+    }
+  ]
+}
