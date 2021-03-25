@@ -1,0 +1,14 @@
+apply plugin: 'groovy'
+apply plugin: 'io.jmix'
+
+group = 'io.jmix.awssecurity'
+archivesBaseName = 'jmix-awssecurity-starter'
+
+dependencies {
+    api project(':awssecurity')
+
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.jmix.core:jmix-core-starter'
+}

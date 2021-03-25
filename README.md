@@ -12,5 +12,5 @@ For more information see:
 Add to your project's `build.gradle` dependencies:
 
 ```groovy
-implementation 'io.jmix.awsfs:jmix-awssec-starter'
+implementation 'io.jmix.awsfs:jmix-awssecurity-starter'
 ```
