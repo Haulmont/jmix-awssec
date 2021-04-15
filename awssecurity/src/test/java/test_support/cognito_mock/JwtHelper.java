@@ -17,6 +17,7 @@
 package test_support.cognito_mock;
 
 import com.nimbusds.jose.*;
+import net.minidev.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -27,7 +28,7 @@ import java.util.UUID;
 
 public final class JwtHelper {
 
-    public static String token(String keyId, Map<String, Object> payloadBody) throws JOSEException {
+    public static String token(String keyId, JSONObject payloadBody) throws JOSEException {
         JWSObject jws = new JWSObject(
                 new JWSHeader.Builder(JWSAlgorithm.RS256).keyID(keyId).build(),
                 new Payload(payloadBody)
@@ -44,7 +45,7 @@ public final class JwtHelper {
                                      long expiresIn) throws JOSEException {
         long issuedAt = issued.atZone(ZoneId.systemDefault()).toEpochSecond();
         long expiresAt = issuedAt + expiresIn;
-        Map<String, Object> payloadBody = new HashMap<>();
+        JSONObject payloadBody = new JSONObject();
         payloadBody.put("sub", UUID.randomUUID().toString());
         payloadBody.put("cognito:groups", userGroups);
         payloadBody.put("event_id", UUID.randomUUID().toString());
@@ -86,7 +87,7 @@ public final class JwtHelper {
                                  String nonce) throws JOSEException {
         long issuedAt = issued.atZone(ZoneId.systemDefault()).toEpochSecond();
         long expiresAt = issuedAt + expiresIn;
-        Map<String, Object> payloadBody = new HashMap<>();
+        JSONObject payloadBody = new JSONObject();
         payloadBody.put("sub", UUID.randomUUID().toString());
         payloadBody.put("aud", "test_client");
         payloadBody.put("cognito:groups", userGroups);
