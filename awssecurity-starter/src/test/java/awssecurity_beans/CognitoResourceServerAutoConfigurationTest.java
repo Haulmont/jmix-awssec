@@ -51,11 +51,15 @@ public class CognitoResourceServerAutoConfigurationTest extends CognitoSecurityA
                 .withInitializer(ctx -> TestPropertySourceUtils.addInlinedPropertiesToEnvironment(ctx,
                         "jmix.awssecurity.apiSecurity.enabled=true",
                         "jmix.awssecurity.uiSecurity.enabled=false"
-                ));
+                ))
+                .withBean("awssec_JwtDecoder", JwtDecoder.class, () -> Mockito.mock(JwtDecoder.class));
 
         contextRunner.run(ctx -> {
             Map<String, WebSecurityConfigurerAdapter> beans = ctx.getBeansOfType(WebSecurityConfigurerAdapter.class);
-            assertThat(beans).hasSize(0);
+            assertThat(beans).hasSize(1);
+            assertThat(beans.values().iterator().next())
+                    .isInstanceOf(CognitoResourceServerConfiguration.class)
+                    .isInstanceOf(CognitoSecurityAutoConfiguration.DefaultCognitoResourceServerConfiguration.class);
         });
     }
 
