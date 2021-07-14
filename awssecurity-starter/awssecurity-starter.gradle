@@ -5,7 +5,7 @@ group = 'io.jmix.awssecurity'
 archivesBaseName = 'jmix-awssecurity-starter'
 
 dependencies {
-    api project(':awssecurity')
+    api 'io.jmix.awssecurity:jmix-awssecurity'
 
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
 

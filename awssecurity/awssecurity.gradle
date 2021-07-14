@@ -5,8 +5,6 @@ group = 'io.jmix.awssecurity'
 archivesBaseName = 'jmix-awssecurity'
 
 dependencies {
-    api platform("io.jmix.bom:jmix-bom:$bomVersion")
-
     api 'io.jmix.core:jmix-core'
     api 'io.jmix.security:jmix-security'
 
