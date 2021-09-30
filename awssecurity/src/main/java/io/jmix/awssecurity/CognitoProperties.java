@@ -29,11 +29,34 @@ import java.util.Map;
 @ConstructorBinding
 public class CognitoProperties {
 
+    /**
+     * AWS Region.
+     */
     private final String region;
+
+    /**
+     * Identifier of Amazon Cognito User Pool.
+     */
     private final String userPoolId;
+
+    /**
+     * Cognito authorization server issuer URI
+     */
     private final String issuerUri;
+
+    /**
+     * Unique ID of app client registered in Cognito.
+     */
     private final String clientId;
+
+    /**
+     * Secret of app client registered in Cognito.
+     */
     private final String clientSecret;
+
+    /**
+     * Domain name used for the sign-up and sign-in pages that are hosted by Cognito.
+     */
     private final String domain;
 
     public CognitoProperties(
@@ -57,42 +80,42 @@ public class CognitoProperties {
     }
 
     /**
-     * AWS Region.
+     * @see #region
      */
     public String getRegion() {
         return region;
     }
 
     /**
-     * Identifier of Amazon Cognito User Pool.
+     * @see #userPoolId
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Cognito authorization server issuer URI
+     * @see #issuerUri
      */
     public String getIssuerUri() {
         return issuerUri;
     }
 
     /**
-     * Unique ID of app client registered in Cognito.
+     * @see #clientId
      */
     public String getClientId() {
         return clientId;
     }
 
     /**
-     * Secret of app client registered in Cognito.
+     * @see #clientSecret
      */
     public String getClientSecret() {
         return clientSecret;
     }
 
     /**
-     * Domain name used for the sign-up and sign-in pages that are hosted by Cognito.
+     * @see #domain
      */
     public String getDomain() {
         return domain;
