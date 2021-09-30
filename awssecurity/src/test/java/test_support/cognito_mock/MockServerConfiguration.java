@@ -42,7 +42,7 @@ import static org.mockserver.model.HttpResponse.response;
 @Configuration
 public class MockServerConfiguration {
 
-    @Value("${jmix.awssecurity.test.mockServerPort}")
+    @Value("${jmix.awssecurity.test.mock-server-port}")
     private int port;
 
     private final ObjectMapper objectMapper = new ObjectMapper();

@@ -29,7 +29,7 @@ public class TestContextInitializer implements ApplicationContextInitializer<Con
         ((DefaultListableBeanFactory) applicationContext.getBeanFactory()).setAllowBeanDefinitionOverriding(false);
         int mockServerPort = SocketUtils.findAvailableTcpPort();
         TestPropertySourceUtils.addInlinedPropertiesToEnvironment(applicationContext,
-                "jmix.awssecurity.test.mockServerPort=" + mockServerPort,
+                "jmix.awssecurity.test.mock-server-port=" + mockServerPort,
                 "jmix.awssecurity.issuer=http://localhost:" + mockServerPort + "/{userPoolId}",
                 "jmix.awssecurity.domain=http://localhost:" + mockServerPort);
     }

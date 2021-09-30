@@ -43,7 +43,7 @@ public class CognitoSecurityAutoConfiguration {
     }
 
     @EnableWebSecurity
-    @ConditionalOnProperty(prefix = "jmix.awssecurity.apiSecurity", name = "enabled", havingValue = "true",
+    @ConditionalOnProperty(prefix = "jmix.awssecurity.api-security", name = "enabled", havingValue = "true",
             matchIfMissing = true)
     @ConditionalOnBean(AuthorizedUrlsProvider.class)
     @ConditionalOnMissingBean({CognitoResourceServerConfiguration.class})
@@ -57,7 +57,7 @@ public class CognitoSecurityAutoConfiguration {
             super(ConfigurationPhase.PARSE_CONFIGURATION);
         }
 
-        @ConditionalOnProperty(prefix = "jmix.awssecurity.uiSecurity", name = "enabled", havingValue = "true")
+        @ConditionalOnProperty(prefix = "jmix.awssecurity.ui-security", name = "enabled", havingValue = "true")
         static class UiSecurityEnabledProperty {
         }
 

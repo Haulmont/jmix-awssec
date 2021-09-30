@@ -35,8 +35,8 @@ public class CognitoResourceServerAutoConfigurationTest extends CognitoSecurityA
     public void testCognitoDisabled() {
         ApplicationContextRunner contextRunner = baseContextRunner
                 .withInitializer(ctx -> TestPropertySourceUtils.addInlinedPropertiesToEnvironment(ctx,
-                        "jmix.awssecurity.apiSecurity.enabled=false",
-                        "jmix.awssecurity.uiSecurity.enabled=false"
+                        "jmix.awssecurity.api-security.enabled=false",
+                        "jmix.awssecurity.ui-security.enabled=false"
                 ));
 
         contextRunner.run(ctx -> {
@@ -49,8 +49,8 @@ public class CognitoResourceServerAutoConfigurationTest extends CognitoSecurityA
     public void testResourceServerDisabledWithoutAuthorizedUrls() {
         ApplicationContextRunner contextRunner = baseContextRunner
                 .withInitializer(ctx -> TestPropertySourceUtils.addInlinedPropertiesToEnvironment(ctx,
-                        "jmix.awssecurity.apiSecurity.enabled=true",
-                        "jmix.awssecurity.uiSecurity.enabled=false"
+                        "jmix.awssecurity.api-security.enabled=true",
+                        "jmix.awssecurity.ui-security.enabled=false"
                 ))
                 .withBean("awssec_JwtDecoder", JwtDecoder.class, () -> Mockito.mock(JwtDecoder.class));
 
@@ -67,8 +67,8 @@ public class CognitoResourceServerAutoConfigurationTest extends CognitoSecurityA
     public void testResourceServerEnabledWithAuthorizedUrls() {
         ApplicationContextRunner contextRunner = baseContextRunner
                 .withInitializer(ctx -> TestPropertySourceUtils.addInlinedPropertiesToEnvironment(ctx,
-                        "jmix.awssecurity.apiSecurity.enabled=true",
-                        "jmix.awssecurity.uiSecurity.enabled=false")
+                        "jmix.awssecurity.api-security.enabled=true",
+                        "jmix.awssecurity.ui-security.enabled=false")
                 )
                 .withBean(TestAuthorizedUrlsProvider.class)
                 .withBean("awssec_JwtDecoder", JwtDecoder.class, () -> Mockito.mock(JwtDecoder.class));
@@ -86,7 +86,7 @@ public class CognitoResourceServerAutoConfigurationTest extends CognitoSecurityA
     public void testResourceServerEnabledWithoutProperty() {
         ApplicationContextRunner contextRunner = baseContextRunner
                 .withInitializer(ctx -> TestPropertySourceUtils.addInlinedPropertiesToEnvironment(ctx,
-                        "jmix.awssecurity.uiSecurity.enabled=false")
+                        "jmix.awssecurity.ui-security.enabled=false")
                 )
                 .withBean(TestAuthorizedUrlsProvider.class)
                 .withBean("awssec_JwtDecoder", JwtDecoder.class, () -> Mockito.mock(JwtDecoder.class));
@@ -104,8 +104,8 @@ public class CognitoResourceServerAutoConfigurationTest extends CognitoSecurityA
     public void testDefaultResourceServerConfigurationNotApplied() {
         ApplicationContextRunner contextRunner = baseContextRunner
                 .withInitializer(ctx -> TestPropertySourceUtils.addInlinedPropertiesToEnvironment(ctx,
-                        "jmix.awssecurity.apiSecurity.enabled=true",
-                        "jmix.awssecurity.uiSecurity.enabled=false")
+                        "jmix.awssecurity.api-security.enabled=true",
+                        "jmix.awssecurity.api-security.enabled=false")
                 )
                 .withBean(TestAuthorizedUrlsProvider.class)
                 .withBean("awssec_JwtDecoder", JwtDecoder.class, () -> Mockito.mock(JwtDecoder.class))
