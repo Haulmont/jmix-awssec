@@ -61,7 +61,7 @@ public class CognitoSecurityAutoConfiguration {
         static class UiSecurityEnabledProperty {
         }
 
-        @ConditionalOnProperty(prefix = "jmix.awssecurity", name = "clientId")
+        @ConditionalOnProperty(prefix = "jmix.awssecurity", name = "client-id")
         static class HasClientIdProperty {
         }
 
