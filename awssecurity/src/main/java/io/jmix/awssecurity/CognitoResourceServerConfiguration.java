@@ -34,8 +34,9 @@ import static io.jmix.security.SecurityConfigurers.apiSecurity;
 /**
  * Security configuration for provided API endpoints.
  * Requests to the authenticated URIs should have `Authorization` header containing JWT token issued by Cognito.
+ * This configuration must be applied before {@link io.jmix.security.StandardSecurityConfiguration}
  */
-@Order(JmixOrder.HIGHEST_PRECEDENCE + 400)
+@Order(JmixOrder.HIGHEST_PRECEDENCE + 60)
 public abstract class CognitoResourceServerConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
