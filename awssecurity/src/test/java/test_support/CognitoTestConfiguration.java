@@ -26,7 +26,7 @@ import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.*;
 
 @Configuration
-@JmixModule(dependsOn = {CognitoConfiguration.class})
+@JmixModule(id = "cognito-test", dependsOn = {CognitoConfiguration.class})
 @PropertySource("classpath:/application.properties")
 public class CognitoTestConfiguration {
 
