@@ -40,6 +40,7 @@ public abstract class CognitoSecurityAutoConfigurationTestBase {
                     SecurityAutoConfiguration.class,
                     CognitoSecurityAutoConfiguration.class))
             .withBean(InMemoryUserRepository.class)
+            .withAllowCircularReferences(true)
             .withAllowBeanDefinitionOverriding(true);
 
     public static class TestAuthorizedUrlsProvider implements AuthorizedUrlsProvider {
